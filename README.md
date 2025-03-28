@@ -38,4 +38,8 @@ http://localhost:8080/rps-local.html
 
 <img width="585" alt="image" src="https://github.com/user-attachments/assets/007b4fa2-a395-4e52-9150-df8fd6d65620" />
 
+Interactivity
+-
+You may click on the battle field (i.e. the canvas) and it will generate a random piece (one of rock, paper, scissors), replacing an existing one.  
+For client mode, the changes will be push back to the server (using WebSocket), so all the other clients will get the same updates.  
 
