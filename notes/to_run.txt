@@ -5,6 +5,9 @@ to run:
 
 $ npm run dev
 
+Ensure .env file is present.
+Refer to the values set in .env.example
+
 ==================================================
 
 setup:

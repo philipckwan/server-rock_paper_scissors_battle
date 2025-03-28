@@ -8,3 +8,8 @@ It also runs a web socket server that is used by all the clients to connect to.
 This project demonstrate the ability to run everything in just one server process, making it simpler to manage (i.e. no need to run 2 processes, a server and a client web)
 I want to see whether this will work.
 
+server mode:
+http://localhost:8080
+
+standalone mode:
+http://localhost:8080/rps-local.html
