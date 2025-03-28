@@ -1,0 +1,4 @@
+notes_private.txt.encf
+
+The above file, in this directory, is encrypted with pck_encrypt_decrypt:
+https://github.com/philipckwan/pck_encrypt_decrypt

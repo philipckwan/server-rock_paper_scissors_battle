@@ -1,0 +1,25 @@
+export class Constants {
+  static version = "v0.1";
+  static name = "server-http_ws";
+  static uuid = "3F156A46-E0EF-491D-AF33-836047A09F04";
+
+  static COMMAND_SERVER_INIT = "COMMAND_SERVER_INIT";
+  static COMMAND_SERVER_PIECES_UPDATE = "COMMAND_SERVER_PIECES_UPDATE";
+  static COMMAND_CLIENT_CLICK_UPDATE = "COMMAND_CLIENT_CLICK_UPDATE";
+
+  static COMMAND_NOTIFY_UUID = "COMMAND_NOTIFY_UUID";
+  static COMMAND_LINE_DREW = "COMMAND_LINE_DREW";
+  static COMMAND_DRAW_LINE = "COMMAND_DRAW_LINE";
+
+  static TYPE = {
+    ROCK: "ROCK",
+    PAPER: "PAPER",
+    SCISSORS: "SCISSORS"
+  }
+  
+  // static STATUS = {
+  //   CHASING: "CHASING",
+  //   EVADING: "EVADING",
+  //   WANDERING: "WANDERING"
+  // }
+}

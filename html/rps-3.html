@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rock-Paper-Scissors Battle</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+  <div><b>Rock-Paper-Scissors Battle [v1.0]</b></div>	
+  <canvas id="myCanvas" width="500" height="500"></canvas>  
+  <script type="module">
+import  {timeLog} from "./src/Utils.js";
+import  {HTMLContext} from "./src/HTMLContext.js";
+let htmlContext;
+
+const main = () => {
+  timeLog(`dslb-3.main;`);
+  
+  htmlContext = new HTMLContext(window, document, navigator);
+  htmlContext.init();
+  if (htmlContext.isMobile) {
+    loadVConsole();
+  } else { 
+  }
+}
+
+const loadVConsole = () => {
+  import("https://unpkg.com/vconsole@latest/dist/vconsole.min.js")
+  .then(() => {
+    let vConsole = new window.VConsole();
+    timeLog(`loadVConsole: vConsole.version:[${vConsole.version}]`);
+  })
+}
+
+main();
+  </script>  
+</body>
+</html>

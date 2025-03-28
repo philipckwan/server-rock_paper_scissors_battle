@@ -1,6 +1,3 @@
-# server-rock_paper_scissors_battle
-Simulator and animator of Rock-Paper-Scissors, on a expressJS and WebSocket server
-
 This server-http_ws aims to provide a web based game, that has server and client sides.
 However, it will be different than the older pck_web_games that I have done before.
 The pck_web_games runs separate server and client, i.e. server runs in nodejs express as an api server, while client runs as a react based web app.
@@ -10,3 +7,4 @@ It also runs a simple HTTP API server that serves some admin API, like getting t
 It also runs a web socket server that is used by all the clients to connect to.
 This project demonstrate the ability to run everything in just one server process, making it simpler to manage (i.e. no need to run 2 processes, a server and a client web)
 I want to see whether this will work.
+
