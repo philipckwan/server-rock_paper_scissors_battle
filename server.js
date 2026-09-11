@@ -41,8 +41,20 @@ let allSingleTypeConsecutiveCount = 0;
 
 let wsClients = new Map();
 
+const ALLOW_FILE_LIST = [
+  "style.css",
+  "Utils.js",
+  "HTMLContext.js",
+  "Drawer.js",
+  "RPSContext.js",
+  "Geometry.js",
+  "Constants.js",
+  "favicon.ico",
+];
+const ALLOW_FILE_SET = new Set(ALLOW_FILE_LIST);
+
 httpServer.listen(PORT, () => {
-  timeLog(`server [v0.3]; listening on port:[${PORT}];`);
+  timeLog(`server [${Constants.version}]; listening on port:[${PORT}];`);
   timeLog(`-__dirname:[${__dirname}]`);  
 });
 
@@ -218,6 +230,12 @@ app.get("/restart", (req, res) => {
 
 app.get('/*', function(req, res){
   timeLog(`server./*: 1.0; req.originalUrl:[${req.originalUrl}]`);
+  let fileToServeTest = req.originalUrl.split('/').pop();
+  if (!ALLOW_FILE_SET.has(fileToServeTest)) {
+    timeLog(`server./*: file is not allowed:[${fileToServeTest}]`);
+    res.status(404).send("File not found");
+    return;
+  }
   let urlSplits = req.originalUrl.split("/");
   if (urlSplits.length === 2) {
     let pathBase = urlSplits[1];

@@ -1,5 +1,5 @@
 export class Constants {
-  static version = "v0.1";
+  static version = "v0.4";
   static name = "server-http_ws";
   static uuid = "3F156A46-E0EF-491D-AF33-836047A09F04";
 
