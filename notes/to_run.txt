@@ -1,7 +1,10 @@
 
 ==================================================
+to run (production):
 
-to run:
+$ npm start
+
+to run (development):
 
 $ npm run dev
 

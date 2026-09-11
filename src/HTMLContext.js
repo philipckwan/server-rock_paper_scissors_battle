@@ -16,7 +16,7 @@ const type = "image/svg+xml";
 let drw;
 const DEBUG_RECEIVE_WS_MESSAGE_COUNT = 0;
 
-const LOCAL_MODE_NUM_PIECES = 50;
+const LOCAL_MODE_NUM_PIECES = 20;
 const LOCAL_MODE_FPS = 24;
 const LOCAL_MODE_FPS_INTERVAL = 1000 / LOCAL_MODE_FPS;
 
@@ -175,6 +175,14 @@ export class HTMLContext {
 
   redrawAllPieces = (pieces) => {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    
+    // Draw a circle centered at the center of the canvas
+    const centerX = this.canvas.width / 2;
+    const centerY = this.canvas.height / 2;
+    const centerPoint = new Point(centerX, centerY);
+    const radius = this.canvas.width / 2; // You can adjust this radius as needed
+    drw.drawBall(centerPoint, radius, {color: '#e6ffff'}); 
+    
     for (let i = 0; i < pieces.length; i++) {
       let aPiece = pieces[i];
       //timeLog(`-drawOne:${aPiece.type};${aPiece.pos.x};${aPiece.pos.y};`);

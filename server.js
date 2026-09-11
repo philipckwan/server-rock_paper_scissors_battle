@@ -22,7 +22,7 @@ const PORT = process.env.ALL_SERVER_PORT;
 const FPS = 24;
 const FPS_INTERVAL = 1000 / FPS;
 
-const NUM_PIECES = 100;
+const NUM_PIECES = 30;
 const CANVAS_WIDTH = 500;
 const CANVAS_HEIGHT = 500;
 

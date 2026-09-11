@@ -2,7 +2,7 @@ import {timeLog} from './Utils.js';
 import {Point, Line, Vector, Geometry} from "./Geometry.js";
 import {Constants} from "./Constants.js";
 
-const SVG_SIZE = 20;
+const SVG_SIZE = 10;
 
 //const MAX_VELOCITY = 3;
 const MAX_VELOCITY_CHASING = 3;
@@ -133,6 +133,28 @@ export class RPSContext {
     return Geometry.getLineLength(aPiece.pos, bPiece.pos);
   }
 
+  isWithinCircle = (piece) => {
+    const centerX = this.canvasWidth / 2;
+    const centerY = this.canvasHeight / 2;
+    const radius = this.canvasWidth / 2;
+    const distanceFromCenter = Geometry.getLineLength(piece.pos, new Point(centerX, centerY));
+    return distanceFromCenter <= radius;
+  }
+
+  getCircleBoundaryVector = (piece) => {
+    const centerX = this.canvasWidth / 2;
+    const centerY = this.canvasHeight / 2;
+    const centerPoint = new Point(centerX, centerY);
+    const radius = this.canvasWidth / 2;
+    const distanceFromCenter = Geometry.getLineLength(piece.pos, centerPoint);
+    
+    if (distanceFromCenter > radius) {
+      // Piece is outside the circle, push it back in
+      return Geometry.getVectorDirectionUnit(piece.pos, centerPoint);
+    }
+    return new Vector(0, 0);
+  }
+
   isCaptured = (fromPiece, toPiece) => {
     return this.distanceBetween(fromPiece, toPiece) <= SVG_SIZE;
   }
@@ -226,19 +248,11 @@ export class RPSContext {
       netVector = vectorAwayFromPeer;
     }
     
-    if (aPiece.pos.x > this.canvasWidth) {
-      //timeLog(`-Piece:[${idxPiece}] collide x; pos:[${aPiece.pos.toString()}];`);
-      netVector.x = -MAX_ACCERATE;
-    } else if (aPiece.pos.x < 0) {
-      //timeLog(`-Piece:[${idxPiece}] collide x; pos:[${aPiece.pos.toString()}];`);
-      netVector.x = MAX_ACCERATE;
-    }
-    if (aPiece.pos.y > this.canvasHeight) {
-      //timeLog(`-Piece:[${idxPiece}] collide y; pos:[${aPiece.pos.toString()}];`);
-      netVector.y = -MAX_ACCERATE;
-    } else if (aPiece.pos.y < 0) {
-      //timeLog(`-Piece:[${idxPiece}] collide y; pos:[${aPiece.pos.toString()}];`);
-      netVector.y = MAX_ACCERATE;
+    // 5. Check circular boundary instead of rectangular boundary
+    let circleBoundaryVector = this.getCircleBoundaryVector(aPiece);
+    if (circleBoundaryVector.x !== 0 || circleBoundaryVector.y !== 0) {
+      // Piece is outside the circle, push it back in
+      netVector.add(circleBoundaryVector);
     }
     aPiece.acc = netVector;
 
